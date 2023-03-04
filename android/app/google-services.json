@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "161109156143",
+    "project_id": "mordern-flutter-firebase-auth",
+    "storage_bucket": "mordern-flutter-firebase-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161109156143:android:1cbc4d138fdef4013c01da",
+        "android_client_info": {
+          "package_name": "com.example.mordern_login_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161109156143-cqji5cbitjggg78lshh0cqva4um7vllo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlyFStlCoz5GAPmgxv4v1tTyuqWf_nq0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161109156143-cqji5cbitjggg78lshh0cqva4um7vllo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
