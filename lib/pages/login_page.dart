@@ -1,9 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mordern_login_ui/components/custom_text_field.dart';
 import 'package:mordern_login_ui/components/custom_button.dart';
 import 'package:mordern_login_ui/components/square_tile.dart';
-import 'package:mordern_login_ui/services/auth_service.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -31,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text
       );
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -48,6 +51,27 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     });
+  }
+
+  void signInWithGoogle() async {
+    showDialog(context: context, builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator());
+    });
+
+    // begin interactive sign in process
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+    // obtain auth details from request
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    // create a new credential for user
+    final credential = GoogleAuthProvider.credential(
+      accessToken: gAuth.accessToken,
+      idToken: gAuth.idToken
+    );
+    // finally, lets sign in
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    Navigator.pop(context);
   }
   
 
@@ -130,12 +154,11 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SquareTile(imagePath: 'lib/images/google.png', onTap: () => AuthService().signInWithGoogle()),
+                  SquareTile(imagePath: 'lib/images/google.png', onTap:  () =>  signInWithGoogle()),
                   const SizedBox(width: 25),
                   //SquareTile(imagePath: 'lib/images/kakao.png')
                 ],
               ),
-        
               const SizedBox(height: 50),
         
               Row(
@@ -155,7 +178,6 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold
                     ),
                   )
-
                   )
                 ],
               )
