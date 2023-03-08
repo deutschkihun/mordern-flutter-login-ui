@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     });
 
-    if (passwordController.text != confirmPasswordController) {
+    if (passwordController.text != confirmPasswordController.text) {
       Navigator.pop(context);
       showErrorMessage('Password don`t match!');     
       return;
