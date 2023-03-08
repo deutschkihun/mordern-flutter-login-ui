@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mordern_login_ui/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.white, statusBarBrightness: Brightness.dark));
+
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AuthPage(),
     );
